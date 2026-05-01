@@ -1,0 +1,367 @@
+:root {
+    --primary-color: #ff9f43;    /* Cam đậm */
+    --secondary-color: #ff80ab;  /* Hồng đậm (tương phản tốt hơn) */
+    --bg-color: #fff9f0;        
+    --dark-border: #2d3436;      /* Màu viền đen sắc nét */
+    --text-color: #2d3436;
+    --card-white: #ffffff;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(var(--primary-color) 1px, transparent 1px),
+        radial-gradient(var(--secondary-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 🐾 Mèo theo chuột - Thêm viền trắng để nổi bật trên mọi nền */
+#cursor-follower {
+    position: fixed;
+    pointer-events: none;
+    font-size: 32px;
+    z-index: 9999;
+    text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+    transition: transform 0.1s;
+}
+
+.container {
+    width: 100%;
+    max-width: 460px;
+    background: var(--card-white);
+    padding: 40px 30px;
+    border-radius: 45px; 
+    /* Viền đen đậm tạo tương phản cực mạnh */
+    border: 4px solid var(--dark-border);
+    /* Bóng đổ cứng (Hard shadow) */
+    box-shadow: 12px 12px 0px var(--dark-border);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* 🐱 Tai mèo tương phản cao */
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    top: -38px;
+    width: 80px;
+    height: 80px;
+    background: var(--card-white);
+    border: 4px solid var(--dark-border);
+    z-index: -1;
+}
+
+.container::before { 
+    left: 40px; 
+    transform: rotate(-15deg); 
+    border-radius: 25px 60px 15px 15px; 
+}
+
+.container::after { 
+    right: 40px; 
+    transform: rotate(60deg); 
+    border-radius: 60px 25px 15px 15px; 
+}
+
+header h1 {
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    -webkit-text-stroke: 1.5px var(--dark-border); /* Viền chữ */
+    text-shadow: 3px 3px 0px var(--dark-border);
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+}
+
+#cat-mascot {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid var(--dark-border);
+    box-shadow: 6px 6px 0px var(--dark-border);
+    background: #fff;
+    transition: 0.3s;
+}
+
+.bubble {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 25px;
+    margin: 20px auto;
+    font-weight: 800;
+    border: 3px solid var(--dark-border);
+    box-shadow: 6px 6px 0px var(--secondary-color);
+    position: relative;
+    color: var(--dark-border);
+}
+
+/* 📝 Inputs sắc nét */
+label {
+    font-weight: 800;
+    display: block;
+    margin: 0 0 8px 10px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 3px solid var(--dark-border);
+    background: #fff;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: 0.2s;
+    margin-bottom: 20px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    background: #fffdf0;
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0px var(--dark-border);
+}
+
+/* ⭐ Sao tương phản */
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 55px;
+    gap: 5px;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 2px var(--dark-border);
+}
+
+.stars span {
+    cursor: pointer;
+    transition: 0.2s;
+    color: #eee;
+}
+
+.stars span:hover, 
+.stars span.active, 
+.stars span.active ~ span {
+    color: #ffeb3b; /* Vàng rực */
+    transform: scale(1.1);
+}
+
+#star-desc {
+    font-weight: 800;
+    background: var(--primary-color);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 2px solid var(--dark-border);
+    margin-bottom: 20px;
+}
+
+/* 🐾 Nút bấm "Cháy" nhất */
+#send-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: 3px solid var(--dark-border);
+    padding: 20px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 0px var(--dark-border);
+    transition: 0.1s;
+    text-transform: uppercase;
+}
+
+#send-btn:hover {
+    background: #ff8c00;
+}
+
+#send-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0px var(--dark-border);
+}
+
+#send-btn:disabled {
+    background: #cbd5e0;
+    box-shadow: 0 8px 0px #718096;
+}
+
+/* Mobile Tối ưu */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+        border-radius: 35px;
+        width: 95%;
+        box-shadow: 8px 8px 0px var(--dark-border);
+    }
+    
+    header h1 { font-size: 1.8rem; }
+    .stars { font-size: 45px; }
+}
+
+/* Mưa mèo - Thêm viền đen */
+.cat-drop {
+    filter: drop-shadow(2px 2px 0 var(--dark-border));
+}
+
+/* --- HIỆU ỨNG MƯA ICON --- */
+.cat-drop {
+    position: fixed;
+    top: -50px;
+    z-index: 10000; /* Đảm bảo nằm trên cùng */
+    pointer-events: none;
+    font-size: 2rem;
+    user-select: none;
+    /* Đổ bóng đen đậm để icon nổi bật trên nền sáng */
+    filter: drop-shadow(2px 2px 0px var(--dark-border));
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* --- POP-UP STYLE --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; /* Mặc định ẩn */
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    backdrop-filter: blur(5px);
+}
+
+.popup-content {
+    background: var(--card-white);
+    padding: 30px;
+    border-radius: 40px;
+    border: 4px solid var(--dark-border);
+    box-shadow: 15px 15px 0px var(--dark-border);
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+    animation: popupPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popupPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.popup-mascot img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    filter: drop-shadow(4px 4px 0px var(--secondary-color));
+}
+
+.popup-content h2 {
+    color: var(--primary-color);
+    -webkit-text-stroke: 1px var(--dark-border);
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#close-popup {
+    background: var(--secondary-color);
+    border: 3px solid var(--dark-border);
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--dark-border);
+    transition: 0.2s;
+}
+
+#close-popup:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--dark-border);
+}
+
+
+/* --- TỐI ƯU MOBILE (TƯƠNG PHẢN CAO) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Giảm khoảng cách để container to hơn */
+        background-size: 20px 20px; /* Chấm bi nhỏ lại cho đỡ rối mắt */
+    }
+
+    .container {
+        width: 95%;
+        padding: 30px 15px;
+        margin-top: 40px;
+        border-radius: 35px; /* Bo góc gắt hơn một chút cho cá tính */
+        box-shadow: 8px 8px 0px var(--dark-border); /* Đổ bóng ngắn hơn cho mobile */
+    }
+
+    /* Thu nhỏ tai mèo cho vừa màn hình nhỏ */
+    .container::before, .container::after {
+        width: 60px;
+        height: 60px;
+        top: -30px;
+        border-width: 3px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+        -webkit-text-stroke: 1px var(--dark-border);
+    }
+
+    #cat-mascot {
+        width: 100px;
+        height: 100px;
+    }
+
+    .stars {
+        font-size: 40px; /* Thu nhỏ sao để không bị nhảy hàng */
+        gap: 2px;
+    }
+
+    input, textarea {
+        font-size: 16px; /* Chống tự động zoom trên iPhone */
+        padding: 12px 15px;
+    }
+
+    #send-btn {
+        padding: 15px;
+        font-size: 1.1rem;
+        box-shadow: 0 6px 0px var(--dark-border);
+    }
+
+    /* Làm cho mưa icon nhỏ lại trên mobile */
+    .cat-drop {
+        font-size: 1.5rem;
+    }
+}
